@@ -58,6 +58,7 @@
     <Compile Include="Alocate.Designer.cs">
       <DependentUpon>Alocate.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboItem.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
