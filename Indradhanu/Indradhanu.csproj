@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
+    <Compile Include="UserControl\About.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="About.Designer.cs">
+    <Compile Include="UserControl\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Alocate.cs">
+    <Compile Include="UserControl\Alocate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Alocate.Designer.cs">
+    <Compile Include="UserControl\Alocate.Designer.cs">
       <DependentUpon>Alocate.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboItem.cs" />
@@ -67,40 +67,40 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receipt.cs">
+    <Compile Include="UserControl\Receipt.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Receipt.Designer.cs">
+    <Compile Include="UserControl\Receipt.Designer.cs">
       <DependentUpon>Receipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registration.cs">
+    <Compile Include="UserControl\Registration.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Registration.Designer.cs">
+    <Compile Include="UserControl\Registration.Designer.cs">
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule.cs">
+    <Compile Include="UserControl\Schedule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Schedule.Designer.cs">
+    <Compile Include="UserControl\Schedule.Designer.cs">
       <DependentUpon>Schedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Search.cs">
+    <Compile Include="UserControl\Search.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Search.Designer.cs">
+    <Compile Include="UserControl\Search.Designer.cs">
       <DependentUpon>Search.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setting.cs">
+    <Compile Include="UserControl\Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Setting.Designer.cs">
+    <Compile Include="UserControl\Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="UserControl\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Alocate.resx">
+    <EmbeddedResource Include="UserControl\Alocate.resx">
       <DependentUpon>Alocate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
@@ -116,19 +116,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Receipt.resx">
+    <EmbeddedResource Include="UserControl\Receipt.resx">
       <DependentUpon>Receipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registration.resx">
+    <EmbeddedResource Include="UserControl\Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Schedule.resx">
+    <EmbeddedResource Include="UserControl\Schedule.resx">
       <DependentUpon>Schedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Search.resx">
+    <EmbeddedResource Include="UserControl\Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setting.resx">
+    <EmbeddedResource Include="UserControl\Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

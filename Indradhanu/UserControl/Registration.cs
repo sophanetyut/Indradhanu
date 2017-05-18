@@ -14,7 +14,7 @@ namespace Indradhanu
     public partial class Registration : UserControl
     {
         SqlConnection con = new SqlConnection(Properties.Settings.Default.connection);
-        SqlCommand com,com2;
+        SqlCommand com;
         public Registration()
         {
             InitializeComponent();
@@ -22,14 +22,15 @@ namespace Indradhanu
 
         private void Registration_Load(object sender, EventArgs e)
         {
-            lbSN.Text ="SN : "+ (int.Parse( GetSN())+1);
+            lbSN.Text =(int.Parse( GetSN())+1).ToString();
             GetAlocate();
+            comboTime.SelectedIndex = 0;
         }
 
         private string GetSN()
         {
-            string s = "error";
-            com = new SqlCommand("select IDENT_CURRENT('tbl_Registration')", con);
+            string s = "0";
+            com = new SqlCommand("SELECT TOP 1 SNK FROM tbl_Registration ORDER BY SN DESC", con);
             try
             {
                 con.Open();
@@ -52,9 +53,9 @@ namespace Indradhanu
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string s = dateDoB.Value.ToString("yyyy-MM-dd");
             com = new SqlCommand(@"INSERT INTO [tbl_Registration]
-                                   ([Name]
+                                   ([SNK]
+                                   ,[Name]
                                    ,[Sex]
                                    ,[Dob]
                                    ,[Age]
@@ -70,7 +71,8 @@ namespace Indradhanu
                                    ,[MettingTime]
                                    ,[Alocated])
                              VALUES
-                                   (@Name,
+                                   (@SNK,
+                                   @Name,
                                    @Sex,
                                    @Dob,
                                    @Age,
@@ -85,11 +87,12 @@ namespace Indradhanu
                                    @ApointmentDate,
                                    @MeetingTime,
                                    @Alocated)", con);
+            com.Parameters.AddWithValue("@SNK", lbSN.Text);
             com.Parameters.AddWithValue("@Name", tbName.Text);
             com.Parameters.AddWithValue("@Sex", GetSex());
-            com.Parameters.AddWithValue("@Dob", s);
+            com.Parameters.AddWithValue("@Dob", dateDoB.Value.ToString("yyyy-MM-dd"));
             com.Parameters.AddWithValue("@Age", tbAge.Text);
-            com.Parameters.AddWithValue("@DoR", s);
+            com.Parameters.AddWithValue("@DoR", DateTime.Now.ToString("yyyy-MM-dd"));
             com.Parameters.AddWithValue("@fName", tbFName.Text);
             com.Parameters.AddWithValue("@mName", tbMName.Text);
             com.Parameters.AddWithValue("@Phone", GetPhone());
@@ -97,17 +100,26 @@ namespace Indradhanu
             com.Parameters.AddWithValue("@Complain", tbComplain.Text);
             com.Parameters.AddWithValue("@Diagnoses", tbDiagnosis.Text);
             com.Parameters.AddWithValue("@Treatment", tbTreatment.Text);
-            com.Parameters.AddWithValue("@ApointmentDate", s);
-            com.Parameters.AddWithValue("@MeetingTime", meetingTime.Value.ToString());
-            com.Parameters.AddWithValue("@Alocated", comAlocated.SelectedItem==null?"":(comAlocated.SelectedItem as ComboItem).value);
+            com.Parameters.AddWithValue("@ApointmentDate", dateApointment.Value.ToString("yyyy-MM-dd"));
+            com.Parameters.AddWithValue("@MeetingTime", comboTime.SelectedItem+":00");
+            com.Parameters.AddWithValue("@Alocated", comAlocated.SelectedItem==null?DBNull.Value:(comAlocated.SelectedItem as ComboItem).value);
 
-            MessageBox.Show(s);
+           
             try
             {
                 con.Open();
                 com.ExecuteNonQuery();
                 MessageBox.Show("Successful", "Indradhanu", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                Clear();
+            }
+            catch(SqlException ex)
+            {
+                if (ex.Number==2601)
+                {
+                    MessageBox.Show("Alocate was registered in same date and time.", "Indradhanu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show(ex.Message, "Indradhanu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -116,6 +128,7 @@ namespace Indradhanu
             finally
             {
                 con.Close();
+                lbSN.Text = "" + (int.Parse(GetSN()) + 1);
             }
         }
 
@@ -147,11 +160,7 @@ namespace Indradhanu
         private int GetSex()
         {
             int x = 0; ;
-            if (raMale.Checked)
-            {
-                x = 0;
-            }
-            else if (raFemale.Checked)
+            if (raFemale.Checked)
             {
                 x = 1;
             }
@@ -165,9 +174,53 @@ namespace Indradhanu
             {
                 if (Phone != "")
                     Phone = Phone + "," + item.ToString();
+                else
+                    Phone = item.ToString();
             }
             return Phone;
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+        
+        private void tbPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+            e.SuppressKeyPress = true;
+            if (listboxPhone.Items.Count == 3)
+                return;
+            if (tbPhone.Text != "")
+            {
+                listboxPhone.Items.Add(tbPhone.Text.Trim());
+                tbPhone.Clear();
+                tbPhone.Focus();
+            }
+        }
+
+        private void listboxPhone_DoubleClick(object sender, EventArgs e)
+        {
+            if (listboxPhone.SelectedItem == null)
+                return;
+            tbPhone.Text = listboxPhone.SelectedItem.ToString();
+            listboxPhone.Items.Remove(listboxPhone.SelectedItem);
+            tbPhone.Focus();
+        }
+
+        void Clear()
+        {
+            tbName.Clear();
+            tbAge.Clear();
+            tbMName.Clear();
+            tbFName.Clear();
+            tbPhone.Clear();
+            listboxPhone.Items.Clear();
+            tbAddress.Clear();
+            tbComplain.Clear();
+            tbDiagnosis.Clear();
+            tbTreatment.Clear();
+        }
     }
 }
