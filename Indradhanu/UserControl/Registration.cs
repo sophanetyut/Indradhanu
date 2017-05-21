@@ -20,6 +20,12 @@ namespace Indradhanu
             InitializeComponent();
         }
 
+        public Registration(string[] DataForEdit)
+        {
+            InitializeComponent();
+
+        }
+
         private void Registration_Load(object sender, EventArgs e)
         {
             lbSN.Text =(int.Parse( GetSN())+1).ToString();

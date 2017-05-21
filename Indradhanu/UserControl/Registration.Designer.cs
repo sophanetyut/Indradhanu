@@ -562,7 +562,8 @@
             "8",
             "9",
             "10",
-            "11"});
+            "11",
+            "12"});
             this.comboTime.Location = new System.Drawing.Point(141, 369);
             this.comboTime.Name = "comboTime";
             this.comboTime.Size = new System.Drawing.Size(133, 27);

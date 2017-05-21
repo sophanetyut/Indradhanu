@@ -77,7 +77,6 @@ namespace Indradhanu
          
         private SqlCommand CommandByOption(string source, string id)
         {
-            string s = "";
             switch (source)
             {
                 case "SN":
@@ -111,6 +110,74 @@ namespace Indradhanu
         private void Search_Load(object sender, EventArgs e)
         {
             LoadDefault();
+        }
+        
+        private void MenuDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Delete this patient is delete all information of the patient.\nAre you sure to delete this patient information? ", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result!=DialogResult.OK)
+            {
+                return;
+            }
+            com = new SqlCommand("DELETE FROM tbl_Registration WHERE tbl_Registration.SN=@sn", con);
+            com.Parameters.AddWithValue("@sn", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            try
+            {
+                con.Open();
+                com.ExecuteNonQuery();
+                
+            }
+            catch (SqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 547:
+                        MessageBox.Show("You need to clear Alocated salary first.", "Requirement", MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                        break;
+                    default:
+                        MessageBox.Show("Can not delete Registration.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            finally
+            {
+                con.Close();
+                LoadDefault();
+            }
+        }
+
+        private void MenuUpdateRegistration_Click(object sender, EventArgs e)
+        {
+            this.SendToBack();
+            Registration s = new Registration();
+            s.Show();
+            s.BringToFront();
+           // com=new SqlCommand("select ")
+        }
+
+        private void MenuAddReceipt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuPrintCaseRecord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuPrintPreCaseRecord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuDateApointment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuAddCaseRecord_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

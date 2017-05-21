@@ -26,7 +26,7 @@ namespace Indradhanu.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=(local);Database=Indrahanu;Trusted_Connection=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=www;Database=Indrahanu;Trusted_Connection=True;")]
         public string connection {
             get {
                 return ((string)(this["connection"]));

@@ -36,8 +36,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAddCaseRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDateApointment = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPrintPreCaseRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPrintCaseRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuUpdateRegistration = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAddReceipt = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -124,23 +129,65 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.MenuAddCaseRecord,
+            this.MenuDateApointment,
+            this.MenuPrintPreCaseRecord,
+            this.MenuPrintCaseRecord,
+            this.MenuUpdateRegistration,
+            this.MenuAddReceipt,
+            this.MenuDelete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 180);
             this.contextMenuStrip1.Text = "Boom";
             // 
-            // toolStripMenuItem1
+            // MenuAddCaseRecord
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
+            this.MenuAddCaseRecord.Name = "MenuAddCaseRecord";
+            this.MenuAddCaseRecord.Size = new System.Drawing.Size(192, 22);
+            this.MenuAddCaseRecord.Text = "Add Case Record";
+            this.MenuAddCaseRecord.Click += new System.EventHandler(this.MenuAddCaseRecord_Click);
             // 
-            // toolStripMenuItem2
+            // MenuDateApointment
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem2.Text = "toolStripMenuItem2";
+            this.MenuDateApointment.Name = "MenuDateApointment";
+            this.MenuDateApointment.Size = new System.Drawing.Size(192, 22);
+            this.MenuDateApointment.Text = "New Apointment Date";
+            this.MenuDateApointment.Click += new System.EventHandler(this.MenuDateApointment_Click);
+            // 
+            // MenuPrintPreCaseRecord
+            // 
+            this.MenuPrintPreCaseRecord.Name = "MenuPrintPreCaseRecord";
+            this.MenuPrintPreCaseRecord.Size = new System.Drawing.Size(192, 22);
+            this.MenuPrintPreCaseRecord.Text = "Print Pre-Case Record";
+            this.MenuPrintPreCaseRecord.Click += new System.EventHandler(this.MenuPrintPreCaseRecord_Click);
+            // 
+            // MenuPrintCaseRecord
+            // 
+            this.MenuPrintCaseRecord.Name = "MenuPrintCaseRecord";
+            this.MenuPrintCaseRecord.Size = new System.Drawing.Size(192, 22);
+            this.MenuPrintCaseRecord.Text = "Print Case Record";
+            this.MenuPrintCaseRecord.Click += new System.EventHandler(this.MenuPrintCaseRecord_Click);
+            // 
+            // MenuUpdateRegistration
+            // 
+            this.MenuUpdateRegistration.Name = "MenuUpdateRegistration";
+            this.MenuUpdateRegistration.Size = new System.Drawing.Size(192, 22);
+            this.MenuUpdateRegistration.Text = "Update Registration";
+            this.MenuUpdateRegistration.Click += new System.EventHandler(this.MenuUpdateRegistration_Click);
+            // 
+            // MenuAddReceipt
+            // 
+            this.MenuAddReceipt.Name = "MenuAddReceipt";
+            this.MenuAddReceipt.Size = new System.Drawing.Size(192, 22);
+            this.MenuAddReceipt.Text = "Receipt";
+            this.MenuAddReceipt.Click += new System.EventHandler(this.MenuAddReceipt_Click);
+            // 
+            // MenuDelete
+            // 
+            this.MenuDelete.Name = "MenuDelete";
+            this.MenuDelete.Size = new System.Drawing.Size(192, 22);
+            this.MenuDelete.Text = "Delete";
+            this.MenuDelete.Click += new System.EventHandler(this.MenuDelete_Click);
             // 
             // Search
             // 
@@ -171,7 +218,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem MenuAddCaseRecord;
+        private System.Windows.Forms.ToolStripMenuItem MenuDateApointment;
+        private System.Windows.Forms.ToolStripMenuItem MenuPrintPreCaseRecord;
+        private System.Windows.Forms.ToolStripMenuItem MenuPrintCaseRecord;
+        private System.Windows.Forms.ToolStripMenuItem MenuUpdateRegistration;
+        private System.Windows.Forms.ToolStripMenuItem MenuAddReceipt;
+        private System.Windows.Forms.ToolStripMenuItem MenuDelete;
     }
 }
