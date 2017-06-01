@@ -46,6 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaseRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CaseRecord.Designer.cs">
+      <DependentUpon>CaseRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormControl.cs" />
+    <Compile Include="NewDateAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDateAppointment.Designer.cs">
+      <DependentUpon>NewDateAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrationUpdate.Designer.cs">
+      <DependentUpon>RegistrationUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\About.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +116,15 @@
     <Compile Include="UserControl\Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CaseRecord.resx">
+      <DependentUpon>CaseRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDateAppointment.resx">
+      <DependentUpon>NewDateAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrationUpdate.resx">
+      <DependentUpon>RegistrationUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

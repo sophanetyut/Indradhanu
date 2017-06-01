@@ -12,9 +12,21 @@ namespace Indradhanu
 {
     public partial class Receipt : UserControl
     {
+        public static void SetID(string id)
+        {
+            s.Text = id;
+            
+        }
+        
+        static Label s;
         public Receipt()
         {
             InitializeComponent();
+        }
+
+        private void Receipt_Load(object sender, EventArgs e)
+        {
+            s = lbID;
         }
     }
 }

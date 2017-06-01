@@ -12,13 +12,15 @@ namespace Indradhanu
 {
     public partial class Form1 : Form
     {
-        Button[] butto;
-        UserControl[] user;
+        public static Button[] butto;
+        public static UserControl[] user;
+        public static string i;
         public Form1()
         {
             InitializeComponent();
             butto =new Button[] { btnHome, btnRegister, btnSearch, btnSchedule, btnCaseRecord, btnReceipt, btnAlocate, btnSetting, btnAbout };
             user = new UserControl[] { registration1, search1, schedule1, receipt1, alocate1, setting1, about1 };
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,7 +28,7 @@ namespace Indradhanu
 
         }
 
-        void ChangeColor(Button buttonObj)
+        public static void ChangeColor(Button buttonObj)
         {
             foreach (Button btnn in butto)
             {
@@ -38,7 +40,7 @@ namespace Indradhanu
             buttonObj.BackColor = Color.FromArgb(5, 110, 140);
         }
 
-        void SwitchComponent(UserControl userControl)
+        public static void SwitchComponent(UserControl userControl)
         {
             foreach (UserControl item in user)
             {
@@ -98,7 +100,7 @@ namespace Indradhanu
             SwitchComponent(setting1);
         }
 
-        private void btnAbout_Click(object sender, EventArgs e)
+        public void btnAbout_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnAbout);
             SwitchComponent(about1);

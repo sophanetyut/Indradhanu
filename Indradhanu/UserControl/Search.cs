@@ -80,26 +80,26 @@ namespace Indradhanu
             switch (source)
             {
                 case "SN":
-                    com = new SqlCommand(@"SELECT TOP 30 SN, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
+                    com = new SqlCommand(@"SELECT TOP 30 SNK, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
                                         Treatment, ApointmentDate, MettingTime,(select Name from tbl_Alocated where Alocated=Alocated) AS 'Alocate' 
-                                        FROM tbl_Registration WHERE SN >= @sn", con);
-                    com.Parameters.Add("@sn", SqlDbType.Int).Value = int.Parse(id);
+                                        FROM tbl_Registration WHERE SNK LIKE @sn+'%'", con);
+                    com.Parameters.AddWithValue("@sn",id);
                     break;
                 case "Name":
-                    com = new SqlCommand(@"SELECT TOP 30 SN, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
+                    com = new SqlCommand(@"SELECT TOP 30 SNK, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
                                         Treatment, ApointmentDate, MettingTime,(select Name from tbl_Alocated where Alocated=Alocated) AS 'Alocate' 
                                         FROM tbl_Registration where Name LIKE @name+'%' ORDER BY [SN] DESC;", con);
                     com.Parameters.AddWithValue("@name", id);
                     break;
                 case "Phone":
-                    com = new SqlCommand(@"SELECT TOP 30 SN, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
+                    com = new SqlCommand(@"SELECT TOP 30 SNK, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
                                         Treatment, ApointmentDate, MettingTime,(select Name from tbl_Alocated where Alocated=Alocated) AS 'Alocate' 
                                         FROM tbl_Registration 
-                                               WHERE [Phone] LIKE phone+'%' ORDER BY [SN] DESC;", con);
+                                               WHERE [Phone] LIKE @phone+'%' ORDER BY [SN] DESC;", con);
                     com.Parameters.Add("@phone", SqlDbType.VarChar).Value = id;
                     break;
                 case "else":
-                    com = new SqlCommand(@"SELECT TOP 30 SN, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
+                    com = new SqlCommand(@"SELECT TOP 30 SNK, Name,(CASE Sex WHEN 0 THEN 'Male' WHEN 1 THEN 'Female' end) as Sex, Dob AS 'Date of birth', Age, DoR AS 'registration date', dbo.fn_Phone(Phone) as 'Phone', Complain, Diagnoses, 
                                         Treatment, ApointmentDate, MettingTime,(select Name from tbl_Alocated where Alocated=Alocated) AS 'Alocate' 
                                         FROM tbl_Registration", con);
                     break;
@@ -119,7 +119,7 @@ namespace Indradhanu
             {
                 return;
             }
-            com = new SqlCommand("DELETE FROM tbl_Registration WHERE tbl_Registration.SN=@sn", con);
+            com = new SqlCommand("DELETE FROM tbl_Registration WHERE tbl_Registration.SNK=@sn", con);
             com.Parameters.AddWithValue("@sn", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             try
             {
@@ -144,20 +144,28 @@ namespace Indradhanu
                 con.Close();
                 LoadDefault();
             }
+            LoadDefault();
         }
 
         private void MenuUpdateRegistration_Click(object sender, EventArgs e)
         {
-            this.SendToBack();
-            Registration s = new Registration();
-            s.Show();
-            s.BringToFront();
-           // com=new SqlCommand("select ")
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                return;
+            }
+            RegistrationUpdate rp = new RegistrationUpdate(int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()));
+            rp.ShowDialog();
+            LoadDefault();
         }
 
         private void MenuAddReceipt_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count>0)
+            {
+                string ID = dataGridView1.SelectedRows[0].Cells["SNK"].Value.ToString();
+                FormControl.BtnReceipt(ID);
+            }
+            
         }
 
         private void MenuPrintCaseRecord_Click(object sender, EventArgs e)
@@ -172,7 +180,10 @@ namespace Indradhanu
 
         private void MenuDateApointment_Click(object sender, EventArgs e)
         {
-
+           
+            RegistrationUpdate rs = new RegistrationUpdate(int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),0);
+            rs.ShowDialog();
+            LoadDefault();
         }
 
         private void MenuAddCaseRecord_Click(object sender, EventArgs e)

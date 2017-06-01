@@ -18,17 +18,82 @@ namespace Indradhanu
         public Registration()
         {
             InitializeComponent();
+            lbSN.Text = (int.Parse(GetSN()) + 1).ToString();
         }
 
-        public Registration(string[] DataForEdit)
+        int RID;
+        public Registration(int SN)
         {
             InitializeComponent();
+            btnSave.Text = "Update";
+            RID = SN;
+            com = new SqlCommand(@"SELECT SNK, Name, Sex, Dob, Age, DoR, fName, mName, Phone, [Address],
+                                Complain, Diagnoses, Treatment, ApointmentDate, MettingTime, Alocated FROM tbl_Registration WHERE SNK=@SN", con);
+            com.Parameters.AddWithValue("@SN", SN);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    lbSN.Text = reader["SNK"].ToString();
+                    tbName.Text = reader["Name"].ToString();
+                    if (int.Parse(reader["Sex"].ToString()) == 1)
+                        raFemale.Checked = true;
+                    else
+                        raMale.Checked = true;
+                    dateDoB.Text = reader["Dob"].ToString();
+                    tbAge.Text = reader["Age"].ToString();
+                    tbFName.Text = reader["fName"].ToString();
+                    tbMName.Text = reader["mName"].ToString();
+                    FillListBoxPhoneFromdatabase(reader["Phone"]);
+                    tbAddress.Text = reader["Address"].ToString();
+                    tbComplain.Text = reader["Complain"].ToString();
+                    tbDiagnosis.Text = reader["Diagnoses"].ToString();
+                    tbTreatment.Text = reader["Treatment"].ToString();
+                    dateApointment.Text = reader["ApointmentDate"].ToString();
+                    comboTime.SelectedItem =int.Parse( reader["MettingTime"].ToString().Substring(0,2));
+                    comAlocated.SelectedItem = reader["Alocated"].ToString();
 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+
+        private void FillListBoxPhoneFromdatabase( object phone)
+        {
+            string text = phone.ToString();
+            if (text.Contains(','))
+            {
+                foreach (var item in text)
+                {
+                    if (item == ',')
+                    {
+                        string aPhone = text.Substring(0, text.IndexOf(item, 1));
+                        text = text.Remove(0, text.IndexOf(item, 1) + 1);
+                        listboxPhone.Items.Add(aPhone);
+                        if (text != "" && text.Contains(",") == false)
+                        {
+                            listboxPhone.Items.Add(text);
+                        }
+                    }
+                }
+            }
+            else
+                listboxPhone.Items.Add(text);
+        }
+
 
         private void Registration_Load(object sender, EventArgs e)
         {
-            lbSN.Text =(int.Parse( GetSN())+1).ToString();
             GetAlocate();
             comboTime.SelectedIndex = 0;
         }
@@ -59,7 +124,32 @@ namespace Indradhanu
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            com = new SqlCommand(@"INSERT INTO [tbl_Registration]
+            if (btnSave.Text== "Update")
+            {
+                com = new SqlCommand(@"UPDATE tbl_Registration
+                                    SET
+                                   [SNK] =@SNK
+                                  ,[Name] = @Name
+                                  ,[Sex] =  @Sex
+                                  ,[Dob] =  @Dob
+                                  ,[Age] =  @Age
+                                  ,[DoR] = @DoR
+                                  ,[fName] =  @fName
+                                  ,[mName] = @mName
+                                  ,[Phone] =  @Phone
+                                  ,[Address] =  @Address
+                                  ,[Complain] = @Complain
+                                  ,[Diagnoses] = @Diagnoses
+                                  ,[Treatment] = @Treatment
+                                  ,[ApointmentDate] = @ApointmentDate
+                                  ,[MettingTime] = @MeetingTime
+                                  ,[Alocated] = @Alocated
+                             WHERE SNK=@sn ", con);
+                com.Parameters.AddWithValue("@sn", RID);
+            }
+            else if (btnSave.Text=="Save")
+            {
+                com = new SqlCommand(@"INSERT INTO [tbl_Registration]
                                    ([SNK]
                                    ,[Name]
                                    ,[Sex]
@@ -93,6 +183,11 @@ namespace Indradhanu
                                    @ApointmentDate,
                                    @MeetingTime,
                                    @Alocated)", con);
+            }
+            else
+            {
+                return;
+            }
             com.Parameters.AddWithValue("@SNK", lbSN.Text);
             com.Parameters.AddWithValue("@Name", tbName.Text);
             com.Parameters.AddWithValue("@Sex", GetSex());
@@ -107,10 +202,9 @@ namespace Indradhanu
             com.Parameters.AddWithValue("@Diagnoses", tbDiagnosis.Text);
             com.Parameters.AddWithValue("@Treatment", tbTreatment.Text);
             com.Parameters.AddWithValue("@ApointmentDate", dateApointment.Value.ToString("yyyy-MM-dd"));
-            com.Parameters.AddWithValue("@MeetingTime", comboTime.SelectedItem+":00");
-            com.Parameters.AddWithValue("@Alocated", comAlocated.SelectedItem==null?DBNull.Value:(comAlocated.SelectedItem as ComboItem).value);
+            com.Parameters.AddWithValue("@MeetingTime", comboTime.SelectedItem + ":00");
+            com.Parameters.AddWithValue("@Alocated", comAlocated.SelectedItem == null ? DBNull.Value : (comAlocated.SelectedItem as ComboItem).value);
 
-           
             try
             {
                 con.Open();
@@ -118,9 +212,9 @@ namespace Indradhanu
                 MessageBox.Show("Successful", "Indradhanu", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Clear();
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
-                if (ex.Number==2601)
+                if (ex.Number == 2601)
                 {
                     MessageBox.Show("Alocate was registered in same date and time.", "Indradhanu", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

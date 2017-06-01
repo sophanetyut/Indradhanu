@@ -38,13 +38,13 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
-            this.registration1 = new Indradhanu.Registration();
-            this.setting1 = new Indradhanu.Setting();
             this.search1 = new Indradhanu.Search();
             this.schedule1 = new Indradhanu.Schedule();
             this.receipt1 = new Indradhanu.Receipt();
             this.alocate1 = new Indradhanu.Alocate();
             this.about1 = new Indradhanu.About();
+            this.registration1 = new Indradhanu.Registration();
+            this.setting1 = new Indradhanu.Setting();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,22 +200,6 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // registration1
-            // 
-            this.registration1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.registration1.Location = new System.Drawing.Point(0, 0);
-            this.registration1.Name = "registration1";
-            this.registration1.Size = new System.Drawing.Size(877, 522);
-            this.registration1.TabIndex = 2;
-            // 
-            // setting1
-            // 
-            this.setting1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.setting1.Location = new System.Drawing.Point(0, 0);
-            this.setting1.Name = "setting1";
-            this.setting1.Size = new System.Drawing.Size(877, 522);
-            this.setting1.TabIndex = 3;
-            // 
             // search1
             // 
             this.search1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -257,21 +241,38 @@
             this.about1.Size = new System.Drawing.Size(877, 522);
             this.about1.TabIndex = 8;
             // 
+            // registration1
+            // 
+            this.registration1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.registration1.Location = new System.Drawing.Point(0, 0);
+            this.registration1.Name = "registration1";
+            this.registration1.Size = new System.Drawing.Size(877, 522);
+            this.registration1.TabIndex = 2;
+            // 
+            // setting1
+            // 
+            this.setting1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setting1.Location = new System.Drawing.Point(0, 0);
+            this.setting1.Name = "setting1";
+            this.setting1.Size = new System.Drawing.Size(877, 522);
+            this.setting1.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 522);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.registration1);
-            this.Controls.Add(this.setting1);
-            this.Controls.Add(this.search1);
             this.Controls.Add(this.schedule1);
             this.Controls.Add(this.receipt1);
             this.Controls.Add(this.alocate1);
             this.Controls.Add(this.about1);
+            this.Controls.Add(this.registration1);
+            this.Controls.Add(this.setting1);
+            this.Controls.Add(this.search1);
             this.MinimumSize = new System.Drawing.Size(840, 510);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Indradhanu clinic";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -281,7 +282,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.Button btnAlocate;
@@ -297,6 +297,7 @@
         private Receipt receipt1;
         private Alocate alocate1;
         private About about1;
+        public System.Windows.Forms.Button btnHome;
     }
 }
 

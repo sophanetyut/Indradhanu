@@ -517,17 +517,19 @@
             this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label13.Location = new System.Drawing.Point(3, 365);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(132, 35);
+            this.label13.Size = new System.Drawing.Size(132, 39);
             this.label13.TabIndex = 0;
             this.label13.Text = "Time : ";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnSave
             // 
+            this.btnSave.AutoSize = true;
+            this.btnSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSave.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(416, 368);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 29);
+            this.btnSave.Size = new System.Drawing.Size(57, 33);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -564,7 +566,7 @@
             "10",
             "11",
             "12"});
-            this.comboTime.Location = new System.Drawing.Point(141, 369);
+            this.comboTime.Location = new System.Drawing.Point(141, 371);
             this.comboTime.Name = "comboTime";
             this.comboTime.Size = new System.Drawing.Size(133, 27);
             this.comboTime.TabIndex = 4;
