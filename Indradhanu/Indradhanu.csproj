@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaseRecord.cs">
+    <Compile Include="UserControl\CaseRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CaseRecord.Designer.cs">
+    <Compile Include="UserControl\CaseRecord.Designer.cs">
       <DependentUpon>CaseRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="FormControl.cs" />
-    <Compile Include="NewDateAppointment.cs">
+    <Compile Include="UserControl\NewDateAppointment.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewDateAppointment.Designer.cs">
+    <Compile Include="UserControl\NewDateAppointment.Designer.cs">
       <DependentUpon>NewDateAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrationUpdate.cs">
@@ -116,10 +116,10 @@
     <Compile Include="UserControl\Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CaseRecord.resx">
+    <EmbeddedResource Include="UserControl\CaseRecord.resx">
       <DependentUpon>CaseRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewDateAppointment.resx">
+    <EmbeddedResource Include="UserControl\NewDateAppointment.resx">
       <DependentUpon>NewDateAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationUpdate.resx">

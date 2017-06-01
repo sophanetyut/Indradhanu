@@ -164,8 +164,7 @@ namespace Indradhanu
             {
                 string ID = dataGridView1.SelectedRows[0].Cells["SNK"].Value.ToString();
                 FormControl.BtnReceipt(ID);
-            }
-            
+            }            
         }
 
         private void MenuPrintCaseRecord_Click(object sender, EventArgs e)
@@ -180,7 +179,6 @@ namespace Indradhanu
 
         private void MenuDateApointment_Click(object sender, EventArgs e)
         {
-           
             RegistrationUpdate rs = new RegistrationUpdate(int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),0);
             rs.ShowDialog();
             LoadDefault();

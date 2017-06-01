@@ -19,7 +19,7 @@ namespace Indradhanu
         {
             InitializeComponent();
             butto =new Button[] { btnHome, btnRegister, btnSearch, btnSchedule, btnCaseRecord, btnReceipt, btnAlocate, btnSetting, btnAbout };
-            user = new UserControl[] { registration1, search1, schedule1, receipt1, alocate1, setting1, about1 };
+          //  user = new UserControl[] { registration1, search1, schedule1, receipt1, alocate1, setting1, about1 };
           
         }
 
@@ -40,70 +40,71 @@ namespace Indradhanu
             buttonObj.BackColor = Color.FromArgb(5, 110, 140);
         }
 
-        public static void SwitchComponent(UserControl userControl)
+        public void ShowUserControl(UserControl userControl)
         {
-            foreach (UserControl item in user)
-            {
-                if (item == userControl)
-                {
-                    item.Show();
-                }
-                else
-                    item.Hide();
-            }
+            userControl.Dock = DockStyle.Fill;
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(userControl);
+            userControl.Show();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnHome);
-            
+            MainPanel.Controls.Clear();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnRegister);
-            SwitchComponent(registration1);
+            Registration r = new Registration();
+            ShowUserControl(r);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnSearch);
-            SwitchComponent(search1);
+            Search s = new Search();
+            ShowUserControl(s);
         }
 
         private void btnSchedule_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnSchedule);
-            SwitchComponent(schedule1);
+            MainPanel.Controls.Clear();
         }
 
         private void btnCaseRecord_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnCaseRecord);
+            MainPanel.Controls.Clear();
         }
 
         private void btnReceipt_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnReceipt);
-            SwitchComponent(receipt1);
+            Receipt re = new Receipt();
+            ShowUserControl(re);
         }
 
         private void btnAlocate_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnAlocate);
-            SwitchComponent(alocate1);
+            Alocate al = new Alocate();
+            ShowUserControl(al);
         }
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnSetting);
-            SwitchComponent(setting1);
+            Setting s = new Setting();
+            ShowUserControl(s);
         }
 
         public void btnAbout_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnAbout);
-            SwitchComponent(about1);
+            MainPanel.Controls.Clear();
         }
     }
 }
