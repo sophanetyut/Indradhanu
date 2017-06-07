@@ -163,7 +163,8 @@ namespace Indradhanu
             if (dataGridView1.SelectedRows.Count>0)
             {
                 string ID = dataGridView1.SelectedRows[0].Cells["SNK"].Value.ToString();
-                FormControl.BtnReceipt(ID);
+                Form1.btnReceiptStatic(ID);
+                
             }            
         }
 

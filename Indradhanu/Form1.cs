@@ -15,17 +15,31 @@ namespace Indradhanu
         public static Button[] butto;
         public static UserControl[] user;
         public static string i;
+        static Panel p;
+
         public Form1()
         {
             InitializeComponent();
             butto =new Button[] { btnHome, btnRegister, btnSearch, btnSchedule, btnCaseRecord, btnReceipt, btnAlocate, btnSetting, btnAbout };
-          //  user = new UserControl[] { registration1, search1, schedule1, receipt1, alocate1, setting1, about1 };
-          
+
+            //  user = new UserControl[] { registration1, search1, schedule1, receipt1, alocate1, setting1, about1 };
+            p = MainPanel;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public static void btnReceiptStatic(string snkID)
+        {
+            Receipt r = new Receipt();
+            r.Dock = DockStyle.Fill;
+            p.Controls.Clear();
+            p.Controls.Add(r);
+            r.lbID.Text = snkID;
+            r.Show();
+            ChangeColor(butto[5]);
         }
 
         public static void ChangeColor(Button buttonObj)
@@ -77,7 +91,8 @@ namespace Indradhanu
         private void btnCaseRecord_Click(object sender, EventArgs e)
         {
             ChangeColor(this.btnCaseRecord);
-            MainPanel.Controls.Clear();
+            CaseRecord cr = new CaseRecord();
+            ShowUserControl(cr);
         }
 
         private void btnReceipt_Click(object sender, EventArgs e)
